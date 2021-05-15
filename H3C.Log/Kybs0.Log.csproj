@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+    <PropertyGroup>
+        <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.1</Version>
+        <Authors>Kybs0</Authors>
+        <UseWpf>True</UseWpf>
+        <UseWindowsForms>true</UseWindowsForms>
+        <RepositoryUrl></RepositoryUrl>
+        <PackageProjectUrl></PackageProjectUrl>
+        <PackageIconUrl></PackageIconUrl>
+        <RepositoryType>git</RepositoryType>
+        <Description>.NET平台-日志管理</Description>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove="Kybs0.Log.csproj.DotSettings" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    </ItemGroup>
+</Project>

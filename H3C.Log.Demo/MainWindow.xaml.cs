@@ -23,7 +23,7 @@ namespace Kybs0.Log.Demo
         public MainWindow()
         {
             InitializeComponent();
-            var log = new Log("YUDONGTest");
+            var log = new Logger("YUDONGTest");
             log.Error("dasffasdfasdf");
             log.Error("dasffasdfasdf",new Exception("sdafasd"));
             log.Error("dasffasdfasdf", new Exception("sdafasd"));

@@ -6,8 +6,8 @@
         <Authors>Kybs0</Authors>
         <UseWpf>True</UseWpf>
         <UseWindowsForms>true</UseWindowsForms>
-        <RepositoryUrl></RepositoryUrl>
-        <PackageProjectUrl></PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Kybs0/Kybs0.Log.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Kybs0/Kybs0.Log</PackageProjectUrl>
         <PackageIconUrl></PackageIconUrl>
         <RepositoryType>git</RepositoryType>
         <Description>.NET平台-日志管理</Description>

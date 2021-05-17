@@ -38,4 +38,4 @@ jobs:
     # 5. Push  package
     - name: Push generated package to GitHub registry
       run: |        
-        .\nuget push .\Kybs0.Log\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.Kybs0NugetKey }} -NoSymbols 
+        .\nuget push .\Kybs0.Log\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.KYBS0NUGETKEY }} -NoSymbols 

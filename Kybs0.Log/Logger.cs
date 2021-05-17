@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace Kybs0.Log
 {
@@ -23,7 +24,7 @@ namespace Kybs0.Log
             {
                 var infos = new List<string>()
                 {
-                    $"{DateTime.Now:yyyy-MM-dd hh:mm:ss} {info}"
+                    $"记录时间：{DateTime.Now:yyyy-MM-dd hh:mm:ss} {info}"
                 };
                 File.AppendAllLines(_logPath.InfoPath, infos);
             }
@@ -38,10 +39,11 @@ namespace Kybs0.Log
             {
                 var infos = new List<string>()
                 {
-                    "*********************************************************************",
-                    $"时间:{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
-                    $"描述:{message}\r\n",
+                    "***************************************************************\r\n",
+                    $"记录时间：{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
+                    $"描述：{message}",
                 };
+                infos[infos.Count - 1] += "\r\n";
                 File.AppendAllLines(_logPath.MessagePath, infos);
             }
             catch (Exception)
@@ -55,10 +57,12 @@ namespace Kybs0.Log
             {
                 var infos = new List<string>()
                 {
-                    "*********************************************************************",
-                    $"时间:{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
-                    $"描述:{error}\r\n",
+                    "***************************************************************\r\n",
+                    $"记录时间：{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
+                    $"线程ID  ：{GetCurrentThreadId()}",
+                    $"错误描述：{error}",
                 };
+                infos[infos.Count - 1] += "\r\n";
                 File.AppendAllLines(_logPath.ErrorPath, infos);
             }
             catch (Exception)
@@ -66,25 +70,23 @@ namespace Kybs0.Log
                 // ignored
             }
         }
+
         public void Error(string error, Exception ex)
         {
             try
             {
                 var infos = new List<string>()
                 {
-                    "*********************************************************************",
-                    $"时间:{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
-                    $"描述:{error}",
-                    $"{ex.Message}"
+                    "***************************************************************\r\n",
+                    $"记录时间：{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
+                    $"线程ID  ：{GetCurrentThreadId()}",
+                    $"错误描述：{error} {ex.Message}"
                 };
                 if (ex.StackTrace != null)
                 {
-                    infos.Add($"{ex.StackTrace}\r\n");
+                    infos.Add($"异常堆栈：{ex.StackTrace}");
                 }
-                else
-                {
-                    infos[infos.Count - 1] += "\r\n";
-                }
+                infos[infos.Count - 1] += "\r\n";
                 File.AppendAllLines(_logPath.ErrorPath, infos);
             }
             catch (Exception)
@@ -98,18 +100,16 @@ namespace Kybs0.Log
             {
                 var infos = new List<string>()
                 {
-                    "*********************************************************************",
-                    $"时间:{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
-                    $"{ex.Message}",
+                    "***************************************************************\r\n",
+                    $"记录时间：{DateTime.Now:yyyy-MM-dd hh:mm:ss}",
+                    $"线程ID  ：{GetCurrentThreadId()}",
+                    $"错误描述：{ex.Message}",
                 };
                 if (ex.StackTrace != null)
                 {
-                    infos.Add($"{ex.StackTrace}\r\n");
+                    infos.Add($"异常堆栈：{ex.StackTrace}");
                 }
-                else
-                {
-                    infos[infos.Count - 1] += "\r\n";
-                }
+                infos[infos.Count - 1] += "\r\n";
                 File.AppendAllLines(_logPath.ErrorPath, infos);
             }
             catch (Exception)
@@ -119,5 +119,11 @@ namespace Kybs0.Log
         }
 
         #endregion
+
+
+        private string GetCurrentThreadId()
+        {
+            return Thread.CurrentThread.ManagedThreadId.ToString();
+        }
     }
 }

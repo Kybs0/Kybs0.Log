@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
     <PropertyGroup>
-        <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net45</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.4</Version>
+        <Version>1.0.5</Version>
         <Authors>Kybs0</Authors>
         <UseWpf>True</UseWpf>
         <UseWindowsForms>true</UseWindowsForms>

@@ -1,13 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
 name: CI
 
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
+    # The type of runner that the job will run on
     runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -17,7 +24,7 @@ jobs:
     # 2.runtime environment
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
-      with:
+      with: 
         dotnet-version: 3.1.100
     # 3.build
     - name: Build with dotnet
@@ -30,5 +37,5 @@ jobs:
         Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
     # 5. Push  package
     - name: Push generated package to GitHub registry
-      run: |
-        .\nuget push .\Kybs0.Log\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NugetKey }} -NoSymbols
+      run: |        
+        .\nuget push .\Kybs0.Log\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.KYBS0NUGETKEY }} -NoSymbols 

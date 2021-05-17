@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Kybs0.Log
 {
-    public class Logger
+    public class Logger : ILogger
     {
         private readonly LogPath _logPath;
 
@@ -23,7 +23,7 @@ namespace Kybs0.Log
             {
                 var infos = new List<string>()
                 {
-                    $"{DateTime.Now:yyyy-MM-dd hh:mm:ss}: {info}"
+                    $"{DateTime.Now:yyyy-MM-dd hh:mm:ss} {info}"
                 };
                 File.AppendAllLines(_logPath.InfoPath, infos);
             }
